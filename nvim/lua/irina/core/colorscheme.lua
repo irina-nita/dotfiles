@@ -1,10 +1,10 @@
 require("catppuccin").setup({
-    flavour = "macchiato", -- latte, frappe, macchiato, mocha
+    flavour = "mocha", -- latte, frappe, macchiato, mocha
     background = { -- :h background
-        light = "latte",
-        dark = "macchiato",
+        light = "mocha",
+        dark = "mocha",
     },
-    transparent_background = true,
+    transparent_background = false,
     show_end_of_buffer = false, -- show the '~' characters after the end of buffers
     term_colors = true,
     dim_inactive = {
@@ -28,7 +28,13 @@ require("catppuccin").setup({
         types = {},
         operators = {},
     },
-    color_overrides = {},
+    color_overrides = {
+        mocha = {
+            base = "#121212",
+            mantle = "#121212",
+            crust = "#121212",
+        },
+    },
     custom_highlights = function(colors)
         return {
             Comment = { fg = colors.subtext0 },
@@ -50,4 +56,4 @@ require("catppuccin").setup({
     },
 })
 
-vim.cmd("colorscheme catppuccin-macchiato")
+vim.cmd("colorscheme catppuccin")

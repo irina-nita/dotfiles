@@ -41,12 +41,36 @@ return packer.startup(function(use)
   use("vim-scripts/ReplaceWithRegister")
   -- COMMENTS
   use("numToStr/Comment.nvim")
+    
+  use("voldikss/vim-floaterm")
+
+  use("puremourning/vimspector")
 
   -- file explorer
   use("nvim-tree/nvim-tree.lua")
 
   -- icons for file
   use("kyazdani42/nvim-web-devicons")
+
+  use({
+      "folke/todo-comments.nvim",
+      requires = "nvim-lua/plenary.nvim",
+      config = function()
+        require("todo-comments").setup { 
+      }
+      end
+  })
+
+  use({
+      "folke/trouble.nvim",
+      requires = "nvim-tree/nvim-web-devicons",
+      config = function()
+	require("trouble").setup {
+
+      }
+      end
+})
+
 
   --statusline
   use("nvim-lualine/lualine.nvim")
@@ -55,10 +79,19 @@ return packer.startup(function(use)
   use({"nvim-telescope/telescope-fzf-native.nvim", run = "make" })
   use({"nvim-telescope/telescope.nvim", branch = "0.1.x"})
   
-  -- autocompletion
-  use("hrsh7th/nvim-cmp") -- completion plugin
-  use("hrsh7th/cmp-buffer") -- source for text in buffer
-  use("hrsh7th/cmp-path") -- source for file system paths
+ -- Autocompletion framework
+  use("hrsh7th/nvim-cmp")
+  use({
+    -- cmp LSP completion
+    "hrsh7th/cmp-nvim-lsp",
+    -- cmp Snippet completion
+    "hrsh7th/cmp-vsnip",
+    -- cmp Path completion
+    "hrsh7th/cmp-path",
+    "hrsh7th/cmp-buffer",
+    after = { "hrsh7th/nvim-cmp" },
+    requires = { "hrsh7th/nvim-cmp" },
+  })
  
   -- snippets
   use("L3MON4D3/LuaSnip") -- snippet engine
@@ -72,19 +105,9 @@ return packer.startup(function(use)
  -- configuring lsp servers
   use("neovim/nvim-lspconfig") -- easily configure language servers
 
-    -- configuring lsp servers
-  -- use("neovim/nvim-lspconfig") -- easily configure language servers
-  
-  use("hrsh7th/cmp-nvim-lsp") -- for autocompletion
-  use({
-    "glepnir/lspsaga.nvim",
-    branch = "main",
-    requires = {
-      { "nvim-tree/nvim-web-devicons" },
-      { "nvim-treesitter/nvim-treesitter" },
-    },
-  })
-
+-- See hrsh7th other plugins for more great completion sources!
+  -- Snippet engine
+  use('hrsh7th/vim-vsnip')
   -- enhanced lsp uis
   use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
 
@@ -97,11 +120,10 @@ return packer.startup(function(use)
   -- treesitter configuration
   use({
     "nvim-treesitter/nvim-treesitter",
-    run = function()
-      local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
-      ts_update()
-    end,
+    run = ":TSUpdate"
   })
+
+  use("p00f/nvim-ts-rainbow")
 
   -- auto closing
   use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...
@@ -109,6 +131,21 @@ return packer.startup(function(use)
 
   -- git integration
   use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
+  
+ -- use("neovim/nvim-lspconfig") 
+  use("simrat39/rust-tools.nvim")
+  
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+  })
+
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = "cd app && npm install",
+    setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
+    ft = { "markdown" }, 
+  })
 
   if packer_bootstrap then
     require("packer").sync()

@@ -104,6 +104,11 @@ _G.packer_plugins = {
     path = "/home/irina/.local/share/nvim/site/pack/packer/start/cmp-path",
     url = "https://github.com/hrsh7th/cmp-path"
   },
+  ["cmp-vsnip"] = {
+    loaded = true,
+    path = "/home/irina/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
+    url = "https://github.com/hrsh7th/cmp-vsnip"
+  },
   cmp_luasnip = {
     loaded = true,
     path = "/home/irina/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
@@ -124,15 +129,15 @@ _G.packer_plugins = {
     path = "/home/irina/.local/share/nvim/site/pack/packer/start/lspkind.nvim",
     url = "https://github.com/onsails/lspkind.nvim"
   },
-  ["lspsaga.nvim"] = {
-    loaded = true,
-    path = "/home/irina/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
-    url = "https://github.com/glepnir/lspsaga.nvim"
-  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/irina/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
+  },
+  ["markdown-preview.nvim"] = {
+    loaded = true,
+    path = "/home/irina/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim",
+    url = "https://github.com/iamcco/markdown-preview.nvim"
   },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
@@ -191,6 +196,11 @@ _G.packer_plugins = {
     path = "/home/irina/.local/share/nvim/site/pack/packer/opt/nvim-ts-autotag",
     url = "https://github.com/windwp/nvim-ts-autotag"
   },
+  ["nvim-ts-rainbow"] = {
+    loaded = true,
+    path = "/home/irina/.local/share/nvim/site/pack/packer/start/nvim-ts-rainbow",
+    url = "https://github.com/p00f/nvim-ts-rainbow"
+  },
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/home/irina/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
@@ -206,6 +216,11 @@ _G.packer_plugins = {
     path = "/home/irina/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["rust-tools.nvim"] = {
+    loaded = true,
+    path = "/home/irina/.local/share/nvim/site/pack/packer/start/rust-tools.nvim",
+    url = "https://github.com/simrat39/rust-tools.nvim"
+  },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
     path = "/home/irina/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
@@ -216,10 +231,27 @@ _G.packer_plugins = {
     path = "/home/irina/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
+  ["todo-comments.nvim"] = {
+    config = { "\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18todo-comments\frequire\0" },
+    loaded = true,
+    path = "/home/irina/.local/share/nvim/site/pack/packer/start/todo-comments.nvim",
+    url = "https://github.com/folke/todo-comments.nvim"
+  },
+  ["trouble.nvim"] = {
+    config = { "\27LJ\2\n9\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\ftrouble\frequire\0" },
+    loaded = true,
+    path = "/home/irina/.local/share/nvim/site/pack/packer/start/trouble.nvim",
+    url = "https://github.com/folke/trouble.nvim"
+  },
   ["typescript.nvim"] = {
     loaded = true,
     path = "/home/irina/.local/share/nvim/site/pack/packer/start/typescript.nvim",
     url = "https://github.com/jose-elias-alvarez/typescript.nvim"
+  },
+  ["vim-floaterm"] = {
+    loaded = true,
+    path = "/home/irina/.local/share/nvim/site/pack/packer/start/vim-floaterm",
+    url = "https://github.com/voldikss/vim-floaterm"
   },
   ["vim-maximizer"] = {
     loaded = true,
@@ -240,10 +272,28 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/irina/.local/share/nvim/site/pack/packer/start/vim-tmux-navigator",
     url = "https://github.com/christoomey/vim-tmux-navigator"
+  },
+  ["vim-vsnip"] = {
+    loaded = true,
+    path = "/home/irina/.local/share/nvim/site/pack/packer/start/vim-vsnip",
+    url = "https://github.com/hrsh7th/vim-vsnip"
+  },
+  vimspector = {
+    loaded = true,
+    path = "/home/irina/.local/share/nvim/site/pack/packer/start/vimspector",
+    url = "https://github.com/puremourning/vimspector"
   }
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: trouble.nvim
+time([[Config for trouble.nvim]], true)
+try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\ftrouble\frequire\0", "config", "trouble.nvim")
+time([[Config for trouble.nvim]], false)
+-- Config for: todo-comments.nvim
+time([[Config for todo-comments.nvim]], true)
+try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18todo-comments\frequire\0", "config", "todo-comments.nvim")
+time([[Config for todo-comments.nvim]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
 vim.cmd [[ packadd nvim-treesitter ]]

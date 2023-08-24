@@ -9,6 +9,7 @@ treesitter.setup({
   -- enable syntax highlighting
   highlight = {
     enable = true,
+    -- additional_vim_regex_highlighting = true,
   },
   -- enable indentation
   indent = { enable = true },
@@ -24,10 +25,14 @@ treesitter.setup({
     "dockerfile",
     "dot",
     "rust",
+    "toml",
     "scala",
     "verilog",
   },
   -- auto install above language parsers
   auto_install = true,
+  rainbow = {
+    enable = true,
+  },
 })
 
