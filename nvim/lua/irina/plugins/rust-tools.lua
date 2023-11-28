@@ -42,7 +42,15 @@ local opts = {
         -- enable clippy on save
         checkOnSave = {
           command = "clippy",
-        },
+        }
+       -- procMacro = { enable = true, attributes = { enable = true } },
+       -- check = {
+       --   allTargets = false,
+        --  targets = {"thumbv6m-none-eabi", "thumbv7em-none-eabi", "thumbv7em-none-eabihf", "riscv32imc-unknown-none-elf", "riscv32imac-unknown-none-elf"}
+       -- },
+       -- cargo = {
+         -- targets = {"thumbv6m-none-eabi", "thumbv7em-none-eabi", "thumbv7em-none-eabihf", "riscv32imc-unknown-none-elf", "riscv32imac-unknown-none-elf"}
+       -- }
       },
     },
   },

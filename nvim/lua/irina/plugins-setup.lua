@@ -51,7 +51,8 @@ return packer.startup(function(use)
 
   -- icons for file
   use("kyazdani42/nvim-web-devicons")
-
+  use ("lervag/vimtex")
+  
   use({
       "folke/todo-comments.nvim",
       requires = "nvim-lua/plenary.nvim",
@@ -61,6 +62,7 @@ return packer.startup(function(use)
       end
   })
 
+  use ('mfussenegger/nvim-jdtls');
   use({
       "folke/trouble.nvim",
       requires = "nvim-tree/nvim-web-devicons",
@@ -105,7 +107,6 @@ return packer.startup(function(use)
  -- configuring lsp servers
   use("neovim/nvim-lspconfig") -- easily configure language servers
 
--- See hrsh7th other plugins for more great completion sources!
   -- Snippet engine
   use('hrsh7th/vim-vsnip')
   -- enhanced lsp uis

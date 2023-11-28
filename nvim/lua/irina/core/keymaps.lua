@@ -49,5 +49,5 @@ keymap.set("n", "<leader>ft", ":FloatermNew --name=myfloat --height=0.8 --width=
 keymap.set("n", "t", ":FloatermToggle myfloat<CR>")
 keymap.set("t", "<Esc>", "<C-\\><C-n>:q<CR>")
 
-keymap.set("n", "<leader>t", ":TroubleToggle<CR>")
+keymap.set("n", "<C-t>", ":TroubleToggle<CR>")
 
