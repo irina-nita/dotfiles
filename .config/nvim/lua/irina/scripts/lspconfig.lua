@@ -39,6 +39,17 @@ function M.setup()
         autostart = true,
     })
 
+	lspconfig.denols.setup {
+	  on_attach = on_attach,
+	  root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "_package.json"),
+	}
+
+	lspconfig.tsserver.setup {
+	  on_attach = on_attach,
+	  root_dir = lspconfig.util.root_pattern("package.json"),
+	  single_file_support = false
+	}
+
     -- Rust analyzer
     lspconfig.rust_analyzer.setup {
         -- Server specific settings.
@@ -54,6 +65,11 @@ function M.setup()
         },
         filetypes = { 'rust' }, autostart = true
     }
+
+	-- Gleam LSP
+	lspconfig.gleam.setup {}
+	lspconfig.pyright.setup {}
+--	lsp.clangd.setup {}
 end
 
 return M

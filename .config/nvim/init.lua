@@ -61,7 +61,20 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   -- Color theme
+  {'shaunsingh/nord.nvim', name = 'nord', priority = 1000},
   { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
+  { 'EdenEast/nightfox.nvim', name = 'nightfox', priority = 1000 },
+  { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true},
+  {'rebelot/kanagawa.nvim', name = 'kanagawa', priority = 1000},
+  { "rose-pine/neovim", name = "rose-pine", priority = 1000 },
+  {
+    'AlexvZyl/nordic.nvim',
+    lazy = false,
+    priority = 1000,
+    config = function()
+        require 'nordic' .load()
+    end
+  },
   { import = 'irina.plugins.basics' },
   {
     "williamboman/mason-lspconfig.nvim",
@@ -156,7 +169,9 @@ require("lazy").setup({
   },
   { import = "irina.plugins.rustvim" },
   { import = "irina.plugins.tree" },
-
+  { import = "irina.plugins.comments" },
+  { import = "irina.plugins.lualine" },
+  { import = "irina.plugins.soil" },
 	-- install with yarn or npm
   {
    "iamcco/markdown-preview.nvim",
@@ -188,9 +203,12 @@ telescope.load_extension("fzf")
 require('catppuccin').setup {
   color_overrides = {
     mocha = {
-      base = "#121212",
-      mantle = "#121212",
-      crust = "#121212",
+      base = "#151619",
+      mantle = "#151619",
+      crust = "#151619",
+	  teal = "#f5c2e7",
+	  sky = "#f5c2e7",
+	  sapphire = "#f5c2e7"
     },
   },
   transparent_background = true,
@@ -198,10 +216,11 @@ require('catppuccin').setup {
     return {
       Comment = { fg = colors.subtext0 },
       ["@constant.builtin"] = { fg = colors.rosewater, style = {} },
-      ["@comment"] = { fg = colors.teal, style = { "italic" } },
+      ["@comment"] = { fg = colors.subtext0, style = { "italic" } },
     }
   end,
 }
+
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -233,16 +252,90 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
--- ---
--- -- lualine.nvim (statusline)
--- ---
--- vim.opt.showmode = false
--- require('lualine').setup({
---   options = {
---     icons_enabled = false,
---     component_separators = '|',
---     section_separators = '',
---   },
--- })
+require('gruvbox').setup({
+	transparent_mode = true,
 
-vim.cmd.colorscheme('catppuccin')
+	palette_overrides = {
+          dark0 = '#282828',
+          dark1 = '#3c3836',
+          dark2 = '#504945',
+          dark3 = '#665c54',
+          dark4 = '#7c6f64',
+          light0 = '#fbf1c7',
+          light1 = '#f4e8be',
+          light2 = '#f2e5bc',
+          light3 = '#eee0b7',
+          light4 = '#e5d5ad',
+          bright_red = '#ea6962',
+          bright_green = '#a9b665',
+          bright_yellow = '#d8a657',
+          bright_blue = '#7daea3',
+          bright_purple = '#d3869b',
+          bright_aqua = '#89b482',
+          bright_orange = '#e78a4e',
+          neutral_red = '#cc241d',
+          neutral_green = '#98971a',
+          neutral_yellow = '#d79921',
+          neutral_blue = '#458588',
+          neutral_purple = '#b16286',
+          neutral_aqua = '#689d6a',
+          neutral_orange = '#d65d0e',
+          dark_red = '#722529',
+          dark_green = '#62693e',
+          dark_aqua = '#49503b',
+          gray = '#928374',
+          faded_red = '#c14a4a',
+          faded_green = '#6c782e',
+          faded_yellow = '#647109',
+          faded_blue = '#45707a',
+          faded_purple = '#945e80',
+          faded_aqua = '#4c7a5d',
+          faded_orange = "#c35e0a",
+          light_red = "#ae5858",
+          light_green = "#ebeabc",
+          light_aqua = "#dee2b6",
+        }
+ })
+
+-- vim.g.nord_disable_background = true
+-- vim.g.nord_italic = false
+
+require('nightfox').setup({
+	options = {
+		transparent = true  
+	},
+    groups = {
+	  all = {
+	    NormalFloat = { bg = "NONE" },
+	  }
+    }
+})
+
+require("rose-pine").setup({
+    variant = "main", -- auto, main, moon, or dawn
+    dark_variant = "main", -- main, moon, or dawn
+    dim_inactive_windows = false,
+    extend_background_behind_borders = false,
+
+    enable = {
+        terminal = true,
+        legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
+        migrations = true, -- Handle deprecated options automatically
+    },
+
+    styles = {
+        bold = true,
+        italic = true,
+        transparency = true,
+    }
+})
+
+require('kanagawa').setup({
+	transparent = true
+})
+
+vim.o.background = "dark" -- or "light" for light mode
+vim.cmd[[colorscheme nightfox]]
+-- vim.cmd[[colorscheme kanagawa-dragon]]
+
+-- vim.cmd[[colorscheme catppuccin-mocha]]

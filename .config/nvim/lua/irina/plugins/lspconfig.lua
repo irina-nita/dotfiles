@@ -40,6 +40,7 @@ return { {
     },
     config = function()
         local lspconfig = require('lspconfig')
+
         -- Rust analyzer
         lspconfig['rust_analyzer'].setup {
             -- Server specific settings.
@@ -57,6 +58,7 @@ return { {
         }
 
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
 
         lspconfig.clangd.setup({
             capabilities = capabilities,

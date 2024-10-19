@@ -39,6 +39,9 @@ vim.api.nvim_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { n
 vim.keymap.set("n", "t", ":FloatermToggle myfloat<CR>")
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>:q<CR>")
 
+-- Markdown Preview
+vim.keymap.set("n", "mp", ":MarkdownPreview<CR>")
+
 -- telescope
 vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
 vim.keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
@@ -47,4 +50,4 @@ vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>") -- list open buf
 vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>") -- list available help tags
 
 --LspSaga
-vim.keymap.set('n', 'q', '<cmd>Lspsaga hover_doc<cr>')
+-- vim.keymap.set('n', 'w', '<cmd>Lspsaga hover_doc<cr>')
