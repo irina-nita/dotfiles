@@ -27,7 +27,10 @@ function M.setup()
       "vim",
     },
     -- sync_install = false,
-    highlight = { enable = true },
+    highlight = {
+        enable = true,
+        disable = { "latex", },
+    },
     -- indent = { enable = true },
     -- autotag = { enable = true },
     -- auto_install = true,

@@ -17,37 +17,37 @@ function M.setup()
     local mason_registry = require("mason-registry")
 
     -- Clangd
-    local clangd_executable = vim.fn.glob(mason_registry.get_package("clangd"):get_install_path() .. "/clangd_*")
-        .. "/bin/clangd"
+    -- local clangd_executable = vim.fn.glob(mason_registry.get_package("clangd"):get_install_path() .. "/clangd_*")
+    --     .. "/bin/clangd"
+    --
+    -- print(clangd_executable)
 
-    print(clangd_executable)
-
-    lspconfig.clangd.setup({
-        filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
-        -- cmd = {
-        --     clangd_executable,
-        --     "--query-driver=/**/*",
-        --     "--clang-tidy",
-        --     "--header-insertion=never",
-        --     "--offset-encoding=utf-16",
-        -- },
-        capabilities = capabilities,
-        on_attach = function(client, bufnr)
-            require("clangd_extensions.inlay_hints").setup_autocmd()
-            require("clangd_extensions.inlay_hints").set_inlay_hints()
-        end,
-        autostart = true,
-    })
+    -- lspconfig.clangd.setup({
+    --     filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
+    --     -- cmd = {
+    --     --     clangd_executable,
+    --     --     "--query-driver=/**/*",
+    --     --     "--clang-tidy",
+    --     --     "--header-insertion=never",
+    --     --     "--offset-encoding=utf-16",
+    --     -- },
+    --     capabilities = capabilities,
+    --     on_attach = function(client, bufnr)
+    --         require("clangd_extensions.inlay_hints").setup_autocmd()
+    --         require("clangd_extensions.inlay_hints").set_inlay_hints()
+    --     end,
+    --     autostart = true,
+    -- })
 
 	lspconfig.denols.setup {
 	  on_attach = on_attach,
 	  root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "_package.json"),
 	}
 
-	lspconfig.tsserver.setup {
+	lspconfig.ts_ls.setup {
 	  on_attach = on_attach,
 	  root_dir = lspconfig.util.root_pattern("package.json"),
-	  single_file_support = false
+	  -- single_file_support = false
 	}
 
     -- Rust analyzer
@@ -66,9 +66,22 @@ function M.setup()
         filetypes = { 'rust' }, autostart = true
     }
 
+	local lsp_flags = {
+	  -- This is the default in Nvim 0.7+
+	  debounce_text_changes = 150,
+	}
+
 	-- Gleam LSP
 	lspconfig.gleam.setup {}
 	lspconfig.pyright.setup {}
+	lspconfig.verible.setup {
+    	on_attach = on_attach,
+    	flags = lsp_flags,
+    	root_dir = function() return vim.uv.cwd() end
+	}
+		-- lspconfig.verible.setup({
+		-- 	cmd = {'verible-verilog-ls', '--rules_config_search'},
+		-- })
 --	lsp.clangd.setup {}
 end
 
