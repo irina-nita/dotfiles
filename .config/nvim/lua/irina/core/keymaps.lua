@@ -49,5 +49,8 @@ vim.keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>") -- find stri
 vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
 vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>") -- list available help tags
 
+-- Rust
+vim.keymap.set("n", "f", "<cmd>RustFmt<cr>") -- find files within current working directory, respects .gitignore
+
 --LspSaga
 -- vim.keymap.set('n', 'w', '<cmd>Lspsaga hover_doc<cr>')

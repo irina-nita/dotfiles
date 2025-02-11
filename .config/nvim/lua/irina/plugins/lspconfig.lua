@@ -59,11 +59,8 @@ return { {
 
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-
-        lspconfig.clangd.setup({
-            capabilities = capabilities,
-            on_attach = on_attach,
-            filetypes = { "c", "cpp", "h" }
-        })
+		-- lspconfig.verible.setup({
+		-- 	cmd = {'verible-verilog-ls', '--rules_config_search'},
+		-- })
     end
 } }

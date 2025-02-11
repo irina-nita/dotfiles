@@ -7,7 +7,7 @@ local M = {
         require('mason').setup()
         require('mason-lspconfig').setup({
             ensure_installed = {
-                "clangd",
+                -- "clangd",
                 "arduino_language_server",
                 "bashls",
                 "dockerls",
