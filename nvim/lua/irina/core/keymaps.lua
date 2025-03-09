@@ -17,10 +17,11 @@ vim.keymap.set("n", "<leader>se", "<C-w>=") -- make split windows equal width & 
 vim.keymap.set("n", "<leader>sx", ":close<CR>") -- close current split window
 
 -- tabs
-vim.keymap.set("n", "<leader>to", ":tabnew<CR>") -- open new tab
-vim.keymap.set("n", "<leader>tx", ":tabclose<CR>") -- close current tab
-vim.keymap.set("n", "<leader>tn", ":tabn<CR>") --  go to next tab
-vim.keymap.set("n", "<leader>tp", ":tabp<CR>") --  go to previous tab
+vim.keymap.set("n", "<C-y>", ":tabnew<CR>") -- close current tab
+vim.keymap.set("n", "<C-q>", ":tabclose<CR>") -- close current tab
+vim.keymap.set("n", "<C-i>", ":tabn<CR>") --  go to next tab
+vim.keymap.set("n", "<C-h>", ":tabp<CR>") --  go to previous tab
+
 vim.keymap.set("n", "<leader>z", ":u<CR>") -- undo
 
 -- LSP keymaps
@@ -54,3 +55,8 @@ vim.keymap.set("n", "f", "<cmd>RustFmt<cr>") -- find files within current workin
 
 --LspSaga
 -- vim.keymap.set('n', 'w', '<cmd>Lspsaga hover_doc<cr>')
+
+-- greatest remap ever
+vim.keymap.set("x", "p", "\"_dP")
+
+

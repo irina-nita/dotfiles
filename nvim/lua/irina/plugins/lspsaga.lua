@@ -10,6 +10,7 @@ local M = { 'nvimdev/lspsaga.nvim' , config = function ()
           colors = {
             normal_bg = "#022746",
           },
+          code_action = '🚀',
         },
       })
 end}

@@ -9,6 +9,10 @@ function M.setup()
       show_file = true,
       folder_level = 2,
     },
+    lightbulb = {
+        enable = true,
+        virtual_text = false
+    }
   })
 end
 

@@ -6,8 +6,8 @@ require("irina.core.opts");
 -- ========================================================================== --
 
 vim.api.nvim_create_user_command('ReloadConfig', 'source $MYVIMRC', {})
-
 local group = vim.api.nvim_create_augroup('user_cmds', { clear = true })
+
 --
 -- vim.api.nvim_create_autocmd('TextYankPost', {
 --   desc = 'Highlight on yank',
@@ -45,6 +45,11 @@ require("lazy").setup({
   -- Color theme
   -- oxocarbon
   { "nyoom-engineering/oxocarbon.nvim", name = "oxocarbon", priority = 1000 },
+  { "ramojus/mellifluous.nvim", name = "mellifluous", priority = 1000,
+    config = function()
+        require("mellifluous").setup({})
+    end
+  },
   -- zenbones
   {
         "zenbones-theme/zenbones.nvim",
@@ -60,6 +65,13 @@ require("lazy").setup({
         --     vim.cmd.colorscheme('zenbones')
         -- end
   },
+  {
+    "kvrohit/rasmus.nvim",
+    priority = 1000,
+    config = function()
+        -- vim.cmd([[colorscheme rasmus]])
+    end,
+  },
   -- kanagawa 
   {
         "rebelot/kanagawa.nvim",
@@ -68,16 +80,23 @@ require("lazy").setup({
         -- you can set set configuration options here
         config = function()
             require('kanagawa').setup({
-                commentStyle = { italic = true },
-                transparent = true,
+                commentStyle = { italic = false },
+                -- transparent = false,
                 colors = {
-                    theme = { all  = {
-                        ui = {
-                            bg_gutter = "none"
+                    theme = {
+                        dragon  = {
+                            ui = {
+                                bg_gutter = "none"
+                            }
                         }
                     }
-                }
-            }
+                },
+                overrides = function(colors)
+                    return {
+                        -- Keyword = { italic = false },
+                        -- Label = { italic = false },
+                    }
+		end,
         })
         end
   },
@@ -102,6 +121,13 @@ require("lazy").setup({
     config = function()
       require("irina/scripts/cmp").setup()
     end,
+  },
+  -- Resize windows
+  { "anuvyklack/windows.nvim",
+    dependencies = { "anuvyklack/middleclass" },
+    config = function()
+        require('windows').setup()
+    end
   },
   -- Code snippets
   {
@@ -144,6 +170,16 @@ require("lazy").setup({
   { import = "irina.plugins.comments" },
   { import = "irina.plugins.lualine" },
   { import = "irina.plugins.soil" },
+  -- {
+  --   "lukas-reineke/indent-blankline.nvim",
+  --   main = "ibl",
+  --   ---@module "ibl"
+  --   ---@type ibl.config
+  --   opts = {},
+  --   config = function ()
+  --       require("ibl").setup()
+  --   end
+  -- },
 	-- install with yarn or npm
   {
    "iamcco/markdown-preview.nvim",
@@ -188,7 +224,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', '<space>wl', function()
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, opts)
-    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
+vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
     vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
     vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
@@ -201,7 +237,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 ------------------------------------------------------------------
 ----------------------------- THEMES -----------------------------  
 -----------------------------------------------------------------
-vim.termguicolors = true
+
+-- vim.termguicolors = true
 vim.g.seoulbones_lighten_line_nr = 10 
 vim.g.seoulbones_transparent_background = true
 vim.g.seoulbones_italic_comments = true
@@ -214,6 +251,8 @@ vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
 vim.api.nvim_set_hl(0, "FloatermBorder", { bg = "none" })
+vim.api.nvim_set_hl(0, "TelescopeBorder" , { bg = "none" })
+vim.api.nvim_set_hl(0, "TelescopeTitle" , { bg = "none" })
 
 --
 -- -- ========================================================================== --
@@ -222,6 +261,7 @@ vim.api.nvim_set_hl(0, "FloatermBorder", { bg = "none" })
 
 vim.opt.number = true
 vim.opt.tabstop = 4
+vim.opt.showtabline = 2
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.signcolumn = "yes:1"
