@@ -8,22 +8,6 @@ require("irina.core.opts");
 vim.api.nvim_create_user_command('ReloadConfig', 'source $MYVIMRC', {})
 local group = vim.api.nvim_create_augroup('user_cmds', { clear = true })
 
---
--- vim.api.nvim_create_autocmd('TextYankPost', {
---   desc = 'Highlight on yank',
---   group = group,
---   callback = function()
---     vim.highlight.on_yank({ higroup = 'Visual', timeout = 200 })
---   end,
--- })
---
--- vim.api.nvim_create_autocmd('FileType', {
---   pattern = { 'help', 'man' },
---   group = group,
---   command = 'nnoremap <buffer> q <cmd>quit<cr>'
--- })
-
-
 -- ========================================================================== --
 -- ==                               PLUGINS                                == --
 -- ========================================================================== --
@@ -48,6 +32,21 @@ require("lazy").setup({
   { "ramojus/mellifluous.nvim", name = "mellifluous", priority = 1000,
     config = function()
         require("mellifluous").setup({})
+    end
+  },
+  { "Mofiqul/vscode.nvim", name = "vscode", priority = 1000,
+    config = function()
+        require("vscode").setup({
+            transparent = true,
+            disable_nvimtree_bg = true,
+            -- Override highlight groups (see ./lua/vscode/theme.lua)
+            group_overrides = {
+            -- this supports the same val table as vim.api.nvim_set_hl
+            -- use colors from this colorscheme by requiring vscode.colors!
+                MatchParen = { underline = true, bg = '#51504f' },
+                NeoTreeDimText = { bg = "NONE" }
+            }
+        })
     end
   },
   -- zenbones
@@ -170,17 +169,31 @@ require("lazy").setup({
   { import = "irina.plugins.comments" },
   { import = "irina.plugins.lualine" },
   { import = "irina.plugins.soil" },
-  -- {
-  --   "lukas-reineke/indent-blankline.nvim",
-  --   main = "ibl",
-  --   ---@module "ibl"
-  --   ---@type ibl.config
-  --   opts = {},
-  --   config = function ()
-  --       require("ibl").setup()
-  --   end
-  -- },
-	-- install with yarn or npm
+  {
+    "nvim-neorg/neorg",
+    dependencies = { "nvim-treesitter" }, -- Add nvim-treesitter here
+    lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
+    version = "*", -- Pin Neorg to the latest stable release
+    config = function()
+        require("neorg").setup {
+          load = {
+            ["core.defaults"] = {},
+            ["core.concealer"] = {},
+            ["core.dirman"] = {
+              config = {
+                workspaces = {
+                  notes = "~/notes",
+                },
+                default_workspace = "notes",
+              },
+            },
+          },
+        }
+  
+        vim.wo.foldlevel = 99
+        vim.wo.conceallevel = 2
+      end,
+  },
   {
    "iamcco/markdown-preview.nvim",
    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
@@ -243,8 +256,8 @@ vim.g.seoulbones_lighten_line_nr = 10
 vim.g.seoulbones_transparent_background = true
 vim.g.seoulbones_italic_comments = true
 
-vim.o.background = "dark" -- or "light" for light mode
-vim.cmd("colorscheme kanagawa-dragon")
+-- vim.o.background = "dark" -- or "light" for light mode
+vim.cmd("colorscheme vscode")
 
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
@@ -253,6 +266,7 @@ vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
 vim.api.nvim_set_hl(0, "FloatermBorder", { bg = "none" })
 vim.api.nvim_set_hl(0, "TelescopeBorder" , { bg = "none" })
 vim.api.nvim_set_hl(0, "TelescopeTitle" , { bg = "none" })
+vim.api.nvim_set_hl(0, "TabLineFill" , { bg = "none" })
 
 --
 -- -- ========================================================================== --
